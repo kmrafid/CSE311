@@ -1,0 +1,130 @@
+CREATE DATABASE pharmacy_managment_system
+
+CREATE TABLE Physician(
+    PhysicianID int(10) not null ,
+    PhysicianName varchar(25),
+    PhysicianAddress varchar(100),
+    PhysicianSalary int (99),
+    PRIMARY KEY (PhysicianID)
+    );
+
+CREATE TABLE Patient(
+    PatientID int(10) not null ,
+    PatientName varchar(25),
+    PatientAddress varchar(100),
+    PRIMARY KEY (PatientID)
+    );
+
+Create TABLE Payment(
+    PaymentID int(10),
+    Amount int(99),
+    PaymentType varchar(10),
+    PatientID int(10),
+    PRIMARY KEY (PaymentID),
+FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+)
+
+
+CREATE TABLE Drug (
+    DrugID int(20),
+    DrugName varchar(20)NOT Null,
+    DrugForm varchar(20),
+    DrugStrength varchar(20),
+    DrugQuantity int(90),
+    PRIMARY KEY (DrugID)
+);
+
+Create TABLE Prescription (
+    PrescirptionID int(99) NOT NULL,
+    PrescriptionDate date,
+    PRIMARY KEY (PrescirptionID),
+    DrugID int (20),
+    FOREIGN KEY (DrugID) REFERENCES Drug(DrugID)
+);
+CREATE Table insurance(
+    InsuranceId int(20) NOT NULL,
+    PatientID int(10),
+    FOREIGN KEY (DrugID) REFERENCES Drug(DrugID),
+    PRIMARY KEY (InsuranceId)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+****Inserting values[Dummy values]******
+
+
+INSERT INTO drug(DrugID,DrugName,DrugForm,DrugStrength,DrugQuantity)
+VALUES (1,'Napa','Tablet','100mg',10),
+(2,'Peracetamol','Tablet','200 mg',20),
+(3,'Lantus Solo Star','Injection','500 mg',5),
+(4,'Ace','Syrup','50 mg',1),
+(5,'Osteo-D','Injection','100 mg',10),
+(6,'Acyclovir USP','Injection','5 mg',1),
+(7,'Tylace','Tablet','10 mg',10),
+(8,'Virux','Syrup','5 mg',1),
+(9,'Adovas','Syrup','10 mg',1),
+(10,'Esloric','Tablet','50 mg',10);
+
+INSERT INTO patient(PatientID,PatientName,PatientAddress)
+VALUES
+(001,'Ava Max','Vegas'),
+(002,'Roxxane', 'Berlin'),
+(003,'Sam Fisher','New York'),
+(004,'Maxwell Harper','Vegas'),
+(005,'Walter White','New Mexico'),
+(006,'Nomad','New York'),
+(007,'James Bond','London'),
+(008,'Nacho','New Mexico'),
+(009,'Hector','California'),
+(010,'Escobar','Miami');
+
+INSERT INTO insurance (InsuranceId, PatientID )
+VALUES(6535,001),
+(5640,006);
+
+
+INSERT INTO payment (PaymentID,Amount,PaymentType,PatientID)
+VALUES 
+(234,1000,'Cash',001),
+(245,1550,'Card',002),
+(158,1678,'bKash',003),
+(452,1000,'Cash',004),
+(125,1350,'Card',005),
+(854,1568,'bKash',006),
+(471,100,'Cash',007),
+(754,150,'Card',008),
+(145,1647,'bKash',009),
+(588,178,'bKash',010);
+
+INSERT INTO physician(PhysicianID,PhysicianName,PhysicianAddress,PhysicianSalary)
+VALUES
+(111,'Mark','California',1200),
+(112,'Rob','Utah',1300),
+(113,'Marcus','New York',1250),
+(114,'Anston','Neveda',1230);
+
+INSERT INTO prescription(PrescirptionID,PrescriptionDate,DrugID)
+VALUES
+(99,"2020-02-20",1),
+(98,"2020-06-20",3),
+(97,"2020-06-21",2),
+(96,"2020-08-16",5);
+
